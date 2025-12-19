@@ -7,7 +7,7 @@ const jssql1 = new JSSQL();
 //    console.log(data)
 //});
 
-//jssql1.insertInto('Personagens', ["Peter Quill", 35, "Terra", 4])
+//jssql1.insertInto('Personagens2', ["Peter Quill", 35, "Terra", 4])
 //.then(data => {
 //    console.log(data);
 //});
@@ -17,7 +17,40 @@ const jssql1 = new JSSQL();
 //    console.table(data);
 //})
 
-jssql1.selectWhere("Personagens2", "id", 1)
-.then(data => {
-    console.table(data);
-})
+//jssql1.selectWhere("Personagens2", "id", 4)
+//.then(data => {
+//    console.table(data);
+//})
+
+import PromptSync from 'prompt-sync';
+
+const prompt = PromptSync({sigint: true});
+
+function repl() {
+
+    var query = prompt('> ');
+
+    switch(query) {
+
+        case 'clear':
+            console.clear();
+            break;
+
+        case 'ping':
+            console.log('pong');
+            break;
+
+        case 'exit':
+            console.clear();
+            return 0;
+            
+        default:
+            console.error(`err:// ${query} is not interpretable`)
+        
+    }
+    
+    repl()
+
+}
+
+repl()

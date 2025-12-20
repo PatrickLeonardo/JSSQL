@@ -5,8 +5,8 @@
   "main": "main.js",
   "type": "module",
   "scripts": {
-    "dev": "node script.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node main.js",
+    "test": "node fake-sql.test.mjs"
   },
   "author": "",
   "license": "ISC",

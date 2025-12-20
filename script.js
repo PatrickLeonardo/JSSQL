@@ -1,56 +1,110 @@
-import JSSQL from './main.js';
+import fs from 'fs';
+import db from './db.json' with { type: 'json' };
 
-const jssql1 = new JSSQL();
+class JSSQL {
 
-//jsqla.createTable("Personagens", ["nome", "idade", "cidade", 'id'])
-//.then(data => {
-//    console.log(data)
-//});
+    createTable(name, fields) {
+           
+        return new Promise((resolve, reject) => {
 
-//jssql1.insertInto('Personagens2', ["Peter Quill", 35, "Terra", 4])
-//.then(data => {
-//    console.log(data);
-//});
+            try {
+                
+                db.push({"name": name, "fields": fields, "values": []});
+                fs.writeFileSync('./db.json', JSON.stringify(db));
+                
+            } catch(error) { reject(error); }
 
-//jssql1.selectAll("Personagens2")
-//.then(data => {
-//    console.table(data);
-//})
-
-//jssql1.selectWhere("Personagens2", "id", 4)
-//.then(data => {
-//    console.table(data);
-//})
-
-import PromptSync from 'prompt-sync';
-
-const prompt = PromptSync({sigint: true});
-
-function repl() {
-
-    var query = prompt('> ');
-
-    switch(query) {
-
-        case 'clear':
-            console.clear();
-            break;
-
-        case 'ping':
-            console.log('pong');
-            break;
-
-        case 'exit':
-            console.clear();
-            return 0;
+            console.table(db);
+            resolve("Created.");
             
-        default:
-            console.error(`err:// ${query} is not interpretable`)
-        
+        })
+
     }
-    
-    repl()
+
+    insertInto(table, values) {
+        
+        return new Promise((resolve, reject) => {
+
+            try {
+
+                const index = db.findIndex(obj => obj.name == table);
+                db[index].values.push(values);
+                fs.writeFileSync('./db.json', JSON.stringify(db));
+
+            } catch(error) { reject(error); }
+
+            resolve("Inserted");
+
+        })
+
+    }
+
+    selectAll(table) {
+
+        return new Promise((resolve, reject) => {
+
+            try {
+                
+                const index = db.findIndex(obj => obj.name == table);
+                const db2 = [];
+                
+                db[index].values.forEach(line => {
+
+                    var i = 0;
+                    const obj = {};
+                    
+                    line.forEach(value => {
+
+                        obj[db[0].fields[i]] = value;
+                        i++;
+
+                    })
+
+                    db2.push(obj);
+                    
+                })
+
+                resolve(db2);
+
+            } catch(error) { reject(error); }
+
+        })
+
+    }
+
+    selectWhere(table, field, value) {
+
+        return new Promise((resolve, reject) => {
+
+            try {
+
+                this.selectAll(table)
+                .then(data => {
+                    
+                    const result = [];
+                    
+                    for(var i = 0; i< data.length; i++) { 
+                        
+                        const obj = Object.entries(data)[i][1]; 
+                        const entries = Object.entries(obj);
+                        const keys = Object.keys(obj);
+                        
+                        if(entries[keys.findIndex(index => index == field)][1] == value) { 
+                            result.push(obj);
+                        }
+                        
+                    }
+                    
+                    resolve(result);
+                    
+                })
+
+            } catch(error) { reject(error); }
+
+        })
+
+    }
 
 }
 
-repl()
+export default JSSQL;

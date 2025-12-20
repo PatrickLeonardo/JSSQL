@@ -2,10 +2,14 @@ const dbs = { MARVEL: {}, DC: {} };
 var defaultDatabase = null;
 
 export const use = (database) => {
-
-    defaultDatabase = dbs[database];
-    console.table([{DEFAULT_DATABASE: database}]);
     
+    if(dbs[database]) {
+        defaultDatabase = dbs[database];
+        return console.table([{DEFAULT_DATABASE: database}]);
+    }
+
+    throw new Error('Database not exists...');
+
 }
 
 export const create = (structure, name, ...columns) => {
@@ -26,7 +30,7 @@ export const create = (structure, name, ...columns) => {
 
 export const desc = (table) => {
     
-    console.table(defaultDatabase[table].columns);
+    return console.table(defaultDatabase[table].columns);
 
 }
 
@@ -83,7 +87,7 @@ export const select = (columns, table, conditions = null) => {
         
     });
 
-    console.table(result);
+    return console.table(result);
 
 } 
 

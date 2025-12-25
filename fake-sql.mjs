@@ -51,26 +51,20 @@ export const select = (columns, table, conditions = null) => {
     }
 
     const result = [];
-    var values = {}; 
     
     table.values.forEach(line => {
         
-        let i = 0;
-        let temp = {};
-
-        table.columns.forEach(column => {
-            values[column] = line[i];
-            i++
-        });
+        var temp = {};
+        var relationalTable = getRelationalTableLine(table, line);
 
         if(conditions){
 
-            conditions = conditions.replaceAll(table.name, 'eval(values)')
+            conditions = conditions.replaceAll(table.name, 'eval(relationalTable)');
             
             if(eval(conditions)) {
                 
-                columns.split(', ').forEach(column => {
-                    temp[column] = values[column];
+                columns.split(', ').forEach(column => { 
+                    temp[column] = relationalTable[column];
                 })
                 
             }
@@ -78,7 +72,7 @@ export const select = (columns, table, conditions = null) => {
         } else {
 
             columns.split(', ').forEach(column => {
-                temp[column] = values[column];
+                temp[column] = relationalTable[column];
             })
 
         }
@@ -90,6 +84,68 @@ export const select = (columns, table, conditions = null) => {
     return console.table(result);
 
 } 
+
+export const update = (table, fields, conditions = null) => {
+
+    from(table).values.forEach(line => {
+        
+        fields.forEach(field => {
+
+            ((relationalTableLine) => {
+
+                field = field.replace(table, "relationalTableLine");
+
+                (conditions) ? conditions = conditions.replaceAll(table, 'eval(relationalTableLine)') : null;
+                
+                if(conditions == null || eval(conditions)) {
+                    
+                    eval(field);
+
+                    const columnToUpdate = field.split(" ")[0].split(".")[1]; 
+                    const indexOfLineToUpdate = from(table).columns.indexOf(columnToUpdate);
+                    const valueToUpdate = field.split(" ")[2];
+                    
+                    line[indexOfLineToUpdate] = eval(valueToUpdate);
+                    
+                }
+                
+            }) (getRelationalTableLine(defaultDatabase[table], line)); 
+
+        });
+
+    });
+
+}
+
+export const deleteFrom = (table, condition) => {
+    
+    condition = condition.replaceAll(table, 'eval(relationalTableLine)');
+
+    into(table).forEach(line => {
+        
+        ((relationalTableLine) => {
+
+            if(eval(condition)) {
+
+                delete into(table)[into(table).findIndex(i => i == line)];
+
+            }
+
+        }) (getRelationalTableLine(from(table), line)); 
+
+    });
+
+}
+
+export const set = (...records) => {
+
+    if(records) {
+        return records[0].split(', '); 
+    }
+
+    throw new Error('');
+
+}
 
 export const into = (table) => {
 
@@ -123,4 +179,18 @@ export const where = (condition) => {
         return condition;
     }
     
+}
+
+const getRelationalTableLine = (table, line) => {
+
+    let relationalTable = {};
+    let i = 0;
+
+    table.columns.forEach(column => {
+        relationalTable[column] = line[i];
+        i++
+    });
+
+    return relationalTable;
+
 }

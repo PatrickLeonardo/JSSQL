@@ -1,53 +1,26 @@
 import PromptSync from 'prompt-sync';
+import { SplitQueries } from './parser/SplitQueries.mjs';
 
-const prompt = PromptSync({sigint: true});
+import { create, use, desc, insert, select, from, into, values, where, update, set, deleteFrom } from './fake-sql.mjs'
 
-function repl() {
+create('database', 'PK');
+use('PK')
 
-    var query = prompt('> ').toLowerCase();
+create('table', 'characters', ['name', 'age', 'city', 'id']);
 
-    switch(query) {
+const parseScriptWithSplitQueries = (script) => {
 
-        case 'clear':
-            console.clear();
-            break;
+    const splitedQuerie = SplitQueries(script); 
+    console.log(`running: ${splitedQuerie}`);
+    eval(splitedQuerie[0]);
 
-        case 'ping':
-            console.log('pong');
-            break;
+    select('*', from('characters'));
 
-        case 'exit':
-            console.clear();
-            return 0;
-            
-        default:
-            //console.error(`err:// ${query} is not interpretable`);
-
-            query = query.split(" ");
-            var obj = ''
-
-            if(query[0] == 'create') {
-                
-                obj = `create('${query[1]}', '${query[2]}'`;
-
-                if(query[1] == 'table') {
-
-                    obj = `${obj}, [${query[3]}]`
-
-                    
-                } else {
-
-                    obj = obj + ')'
-
-                }
-
-            }
-            
-            console.log(obj)
-    }
-    
-    repl();
+    const query = prompt(' > ');
+    parseScriptWithSplitQueries(query);
 
 }
 
-repl();
+const prompt = PromptSync({sigint: true});
+const query = prompt(' > ');
+parseScriptWithSplitQueries(query);

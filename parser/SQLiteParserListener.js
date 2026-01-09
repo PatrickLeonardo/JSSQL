@@ -14,15 +14,6 @@ export default class SQLiteParserListener extends antlr4.tree.ParseTreeListener 
 	}
 
 
-	// Enter a parse tree produced by SQLiteParser#error.
-	enterError(ctx) {
-	}
-
-	// Exit a parse tree produced by SQLiteParser#error.
-	exitError(ctx) {
-	}
-
-
 	// Enter a parse tree produced by SQLiteParser#sql_stmt_list.
 	enterSql_stmt_list(ctx) {
 	}
@@ -86,168 +77,6 @@ export default class SQLiteParserListener extends antlr4.tree.ParseTreeListener 
 	}
 
 
-	// Enter a parse tree produced by SQLiteParser#common_table_statement.
-	enterCommon_table_statement(ctx) {
-	}
-
-	// Exit a parse tree produced by SQLiteParser#common_table_statement.
-	exitCommon_table_statement(ctx) {
-	}
-
-
-	// Enter a parse tree produced by SQLiteParser#compound_select_stmt.
-	enterCompound_select_stmt(ctx) {
-	}
-
-	// Exit a parse tree produced by SQLiteParser#compound_select_stmt.
-	exitCompound_select_stmt(ctx) {
-	}
-
-
-	// Enter a parse tree produced by SQLiteParser#create_index_stmt.
-	enterCreate_index_stmt(ctx) {
-	}
-
-	// Exit a parse tree produced by SQLiteParser#create_index_stmt.
-	exitCreate_index_stmt(ctx) {
-	}
-
-
-	// Enter a parse tree produced by SQLiteParser#create_table_stmt.
-	enterCreate_table_stmt(ctx) {
-	}
-
-	// Exit a parse tree produced by SQLiteParser#create_table_stmt.
-	exitCreate_table_stmt(ctx) {
-	}
-
-
-	// Enter a parse tree produced by SQLiteParser#create_trigger_stmt.
-	enterCreate_trigger_stmt(ctx) {
-	}
-
-	// Exit a parse tree produced by SQLiteParser#create_trigger_stmt.
-	exitCreate_trigger_stmt(ctx) {
-	}
-
-
-	// Enter a parse tree produced by SQLiteParser#create_view_stmt.
-	enterCreate_view_stmt(ctx) {
-	}
-
-	// Exit a parse tree produced by SQLiteParser#create_view_stmt.
-	exitCreate_view_stmt(ctx) {
-	}
-
-
-	// Enter a parse tree produced by SQLiteParser#create_virtual_table_stmt.
-	enterCreate_virtual_table_stmt(ctx) {
-	}
-
-	// Exit a parse tree produced by SQLiteParser#create_virtual_table_stmt.
-	exitCreate_virtual_table_stmt(ctx) {
-	}
-
-
-	// Enter a parse tree produced by SQLiteParser#delete_stmt.
-	enterDelete_stmt(ctx) {
-	}
-
-	// Exit a parse tree produced by SQLiteParser#delete_stmt.
-	exitDelete_stmt(ctx) {
-	}
-
-
-	// Enter a parse tree produced by SQLiteParser#delete_stmt_limited.
-	enterDelete_stmt_limited(ctx) {
-	}
-
-	// Exit a parse tree produced by SQLiteParser#delete_stmt_limited.
-	exitDelete_stmt_limited(ctx) {
-	}
-
-
-	// Enter a parse tree produced by SQLiteParser#detach_stmt.
-	enterDetach_stmt(ctx) {
-	}
-
-	// Exit a parse tree produced by SQLiteParser#detach_stmt.
-	exitDetach_stmt(ctx) {
-	}
-
-
-	// Enter a parse tree produced by SQLiteParser#drop_stmt.
-	enterDrop_stmt(ctx) {
-	}
-
-	// Exit a parse tree produced by SQLiteParser#drop_stmt.
-	exitDrop_stmt(ctx) {
-	}
-
-
-	// Enter a parse tree produced by SQLiteParser#factored_select_stmt.
-	enterFactored_select_stmt(ctx) {
-	}
-
-	// Exit a parse tree produced by SQLiteParser#factored_select_stmt.
-	exitFactored_select_stmt(ctx) {
-	}
-
-
-	// Enter a parse tree produced by SQLiteParser#order_by_stmt.
-	enterOrder_by_stmt(ctx) {
-	}
-
-	// Exit a parse tree produced by SQLiteParser#order_by_stmt.
-	exitOrder_by_stmt(ctx) {
-	}
-
-
-	// Enter a parse tree produced by SQLiteParser#limit_stmt.
-	enterLimit_stmt(ctx) {
-	}
-
-	// Exit a parse tree produced by SQLiteParser#limit_stmt.
-	exitLimit_stmt(ctx) {
-	}
-
-
-	// Enter a parse tree produced by SQLiteParser#insert_stmt.
-	enterInsert_stmt(ctx) {
-	}
-
-	// Exit a parse tree produced by SQLiteParser#insert_stmt.
-	exitInsert_stmt(ctx) {
-	}
-
-
-	// Enter a parse tree produced by SQLiteParser#pragma_stmt.
-	enterPragma_stmt(ctx) {
-	}
-
-	// Exit a parse tree produced by SQLiteParser#pragma_stmt.
-	exitPragma_stmt(ctx) {
-	}
-
-
-	// Enter a parse tree produced by SQLiteParser#reindex_stmt.
-	enterReindex_stmt(ctx) {
-	}
-
-	// Exit a parse tree produced by SQLiteParser#reindex_stmt.
-	exitReindex_stmt(ctx) {
-	}
-
-
-	// Enter a parse tree produced by SQLiteParser#release_stmt.
-	enterRelease_stmt(ctx) {
-	}
-
-	// Exit a parse tree produced by SQLiteParser#release_stmt.
-	exitRelease_stmt(ctx) {
-	}
-
-
 	// Enter a parse tree produced by SQLiteParser#rollback_stmt.
 	enterRollback_stmt(ctx) {
 	}
@@ -266,57 +95,48 @@ export default class SQLiteParserListener extends antlr4.tree.ParseTreeListener 
 	}
 
 
-	// Enter a parse tree produced by SQLiteParser#simple_select_stmt.
-	enterSimple_select_stmt(ctx) {
+	// Enter a parse tree produced by SQLiteParser#release_stmt.
+	enterRelease_stmt(ctx) {
 	}
 
-	// Exit a parse tree produced by SQLiteParser#simple_select_stmt.
-	exitSimple_select_stmt(ctx) {
-	}
-
-
-	// Enter a parse tree produced by SQLiteParser#select_stmt.
-	enterSelect_stmt(ctx) {
-	}
-
-	// Exit a parse tree produced by SQLiteParser#select_stmt.
-	exitSelect_stmt(ctx) {
+	// Exit a parse tree produced by SQLiteParser#release_stmt.
+	exitRelease_stmt(ctx) {
 	}
 
 
-	// Enter a parse tree produced by SQLiteParser#select_or_values.
-	enterSelect_or_values(ctx) {
+	// Enter a parse tree produced by SQLiteParser#create_index_stmt.
+	enterCreate_index_stmt(ctx) {
 	}
 
-	// Exit a parse tree produced by SQLiteParser#select_or_values.
-	exitSelect_or_values(ctx) {
-	}
-
-
-	// Enter a parse tree produced by SQLiteParser#update_stmt.
-	enterUpdate_stmt(ctx) {
-	}
-
-	// Exit a parse tree produced by SQLiteParser#update_stmt.
-	exitUpdate_stmt(ctx) {
+	// Exit a parse tree produced by SQLiteParser#create_index_stmt.
+	exitCreate_index_stmt(ctx) {
 	}
 
 
-	// Enter a parse tree produced by SQLiteParser#update_stmt_limited.
-	enterUpdate_stmt_limited(ctx) {
+	// Enter a parse tree produced by SQLiteParser#indexed_column.
+	enterIndexed_column(ctx) {
 	}
 
-	// Exit a parse tree produced by SQLiteParser#update_stmt_limited.
-	exitUpdate_stmt_limited(ctx) {
+	// Exit a parse tree produced by SQLiteParser#indexed_column.
+	exitIndexed_column(ctx) {
 	}
 
 
-	// Enter a parse tree produced by SQLiteParser#vacuum_stmt.
-	enterVacuum_stmt(ctx) {
+	// Enter a parse tree produced by SQLiteParser#create_table_stmt.
+	enterCreate_table_stmt(ctx) {
 	}
 
-	// Exit a parse tree produced by SQLiteParser#vacuum_stmt.
-	exitVacuum_stmt(ctx) {
+	// Exit a parse tree produced by SQLiteParser#create_table_stmt.
+	exitCreate_table_stmt(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#table_options.
+	enterTable_options(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#table_options.
+	exitTable_options(ctx) {
 	}
 
 
@@ -347,48 +167,12 @@ export default class SQLiteParserListener extends antlr4.tree.ParseTreeListener 
 	}
 
 
-	// Enter a parse tree produced by SQLiteParser#conflict_clause.
-	enterConflict_clause(ctx) {
+	// Enter a parse tree produced by SQLiteParser#signed_number.
+	enterSigned_number(ctx) {
 	}
 
-	// Exit a parse tree produced by SQLiteParser#conflict_clause.
-	exitConflict_clause(ctx) {
-	}
-
-
-	// Enter a parse tree produced by SQLiteParser#expr.
-	enterExpr(ctx) {
-	}
-
-	// Exit a parse tree produced by SQLiteParser#expr.
-	exitExpr(ctx) {
-	}
-
-
-	// Enter a parse tree produced by SQLiteParser#foreign_key_clause.
-	enterForeign_key_clause(ctx) {
-	}
-
-	// Exit a parse tree produced by SQLiteParser#foreign_key_clause.
-	exitForeign_key_clause(ctx) {
-	}
-
-
-	// Enter a parse tree produced by SQLiteParser#raise_function.
-	enterRaise_function(ctx) {
-	}
-
-	// Exit a parse tree produced by SQLiteParser#raise_function.
-	exitRaise_function(ctx) {
-	}
-
-
-	// Enter a parse tree produced by SQLiteParser#indexed_column.
-	enterIndexed_column(ctx) {
-	}
-
-	// Exit a parse tree produced by SQLiteParser#indexed_column.
-	exitIndexed_column(ctx) {
+	// Exit a parse tree produced by SQLiteParser#signed_number.
+	exitSigned_number(ctx) {
 	}
 
 
@@ -401,39 +185,57 @@ export default class SQLiteParserListener extends antlr4.tree.ParseTreeListener 
 	}
 
 
+	// Enter a parse tree produced by SQLiteParser#foreign_key_clause.
+	enterForeign_key_clause(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#foreign_key_clause.
+	exitForeign_key_clause(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#conflict_clause.
+	enterConflict_clause(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#conflict_clause.
+	exitConflict_clause(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#create_trigger_stmt.
+	enterCreate_trigger_stmt(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#create_trigger_stmt.
+	exitCreate_trigger_stmt(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#create_view_stmt.
+	enterCreate_view_stmt(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#create_view_stmt.
+	exitCreate_view_stmt(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#create_virtual_table_stmt.
+	enterCreate_virtual_table_stmt(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#create_virtual_table_stmt.
+	exitCreate_virtual_table_stmt(ctx) {
+	}
+
+
 	// Enter a parse tree produced by SQLiteParser#with_clause.
 	enterWith_clause(ctx) {
 	}
 
 	// Exit a parse tree produced by SQLiteParser#with_clause.
 	exitWith_clause(ctx) {
-	}
-
-
-	// Enter a parse tree produced by SQLiteParser#qualified_table_name.
-	enterQualified_table_name(ctx) {
-	}
-
-	// Exit a parse tree produced by SQLiteParser#qualified_table_name.
-	exitQualified_table_name(ctx) {
-	}
-
-
-	// Enter a parse tree produced by SQLiteParser#ordering_term.
-	enterOrdering_term(ctx) {
-	}
-
-	// Exit a parse tree produced by SQLiteParser#ordering_term.
-	exitOrdering_term(ctx) {
-	}
-
-
-	// Enter a parse tree produced by SQLiteParser#pragma_value.
-	enterPragma_value(ctx) {
-	}
-
-	// Exit a parse tree produced by SQLiteParser#pragma_value.
-	exitPragma_value(ctx) {
 	}
 
 
@@ -446,111 +248,291 @@ export default class SQLiteParserListener extends antlr4.tree.ParseTreeListener 
 	}
 
 
-	// Enter a parse tree produced by SQLiteParser#result_column.
-	enterResult_column(ctx) {
+	// Enter a parse tree produced by SQLiteParser#cte_table_name.
+	enterCte_table_name(ctx) {
 	}
 
-	// Exit a parse tree produced by SQLiteParser#result_column.
-	exitResult_column(ctx) {
-	}
-
-
-	// Enter a parse tree produced by SQLiteParser#window_function.
-	enterWindow_function(ctx) {
-	}
-
-	// Exit a parse tree produced by SQLiteParser#window_function.
-	exitWindow_function(ctx) {
+	// Exit a parse tree produced by SQLiteParser#cte_table_name.
+	exitCte_table_name(ctx) {
 	}
 
 
-	// Enter a parse tree produced by SQLiteParser#offset.
-	enterOffset(ctx) {
+	// Enter a parse tree produced by SQLiteParser#delete_stmt.
+	enterDelete_stmt(ctx) {
 	}
 
-	// Exit a parse tree produced by SQLiteParser#offset.
-	exitOffset(ctx) {
-	}
-
-
-	// Enter a parse tree produced by SQLiteParser#default_value.
-	enterDefault_value(ctx) {
-	}
-
-	// Exit a parse tree produced by SQLiteParser#default_value.
-	exitDefault_value(ctx) {
+	// Exit a parse tree produced by SQLiteParser#delete_stmt.
+	exitDelete_stmt(ctx) {
 	}
 
 
-	// Enter a parse tree produced by SQLiteParser#partition_by.
-	enterPartition_by(ctx) {
+	// Enter a parse tree produced by SQLiteParser#detach_stmt.
+	enterDetach_stmt(ctx) {
 	}
 
-	// Exit a parse tree produced by SQLiteParser#partition_by.
-	exitPartition_by(ctx) {
-	}
-
-
-	// Enter a parse tree produced by SQLiteParser#order_by_expr.
-	enterOrder_by_expr(ctx) {
-	}
-
-	// Exit a parse tree produced by SQLiteParser#order_by_expr.
-	exitOrder_by_expr(ctx) {
+	// Exit a parse tree produced by SQLiteParser#detach_stmt.
+	exitDetach_stmt(ctx) {
 	}
 
 
-	// Enter a parse tree produced by SQLiteParser#order_by_expr_asc_desc.
-	enterOrder_by_expr_asc_desc(ctx) {
+	// Enter a parse tree produced by SQLiteParser#drop_stmt.
+	enterDrop_stmt(ctx) {
 	}
 
-	// Exit a parse tree produced by SQLiteParser#order_by_expr_asc_desc.
-	exitOrder_by_expr_asc_desc(ctx) {
-	}
-
-
-	// Enter a parse tree produced by SQLiteParser#expr_asc_desc.
-	enterExpr_asc_desc(ctx) {
-	}
-
-	// Exit a parse tree produced by SQLiteParser#expr_asc_desc.
-	exitExpr_asc_desc(ctx) {
+	// Exit a parse tree produced by SQLiteParser#drop_stmt.
+	exitDrop_stmt(ctx) {
 	}
 
 
-	// Enter a parse tree produced by SQLiteParser#asc_desc.
-	enterAsc_desc(ctx) {
+	// Enter a parse tree produced by SQLiteParser#expr.
+	enterExpr(ctx) {
 	}
 
-	// Exit a parse tree produced by SQLiteParser#asc_desc.
-	exitAsc_desc(ctx) {
-	}
-
-
-	// Enter a parse tree produced by SQLiteParser#frame_clause.
-	enterFrame_clause(ctx) {
-	}
-
-	// Exit a parse tree produced by SQLiteParser#frame_clause.
-	exitFrame_clause(ctx) {
+	// Exit a parse tree produced by SQLiteParser#expr.
+	exitExpr(ctx) {
 	}
 
 
-	// Enter a parse tree produced by SQLiteParser#frame_start.
-	enterFrame_start(ctx) {
+	// Enter a parse tree produced by SQLiteParser#expr_recursive.
+	enterExpr_recursive(ctx) {
 	}
 
-	// Exit a parse tree produced by SQLiteParser#frame_start.
-	exitFrame_start(ctx) {
+	// Exit a parse tree produced by SQLiteParser#expr_recursive.
+	exitExpr_recursive(ctx) {
 	}
 
 
-	// Enter a parse tree produced by SQLiteParser#frame_end.
-	enterFrame_end(ctx) {
+	// Enter a parse tree produced by SQLiteParser#expr_or.
+	enterExpr_or(ctx) {
 	}
 
-	// Exit a parse tree produced by SQLiteParser#frame_end.
-	exitFrame_end(ctx) {
+	// Exit a parse tree produced by SQLiteParser#expr_or.
+	exitExpr_or(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#expr_and.
+	enterExpr_and(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#expr_and.
+	exitExpr_and(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#expr_not.
+	enterExpr_not(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#expr_not.
+	exitExpr_not(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#expr_binary.
+	enterExpr_binary(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#expr_binary.
+	exitExpr_binary(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#expr_comparison.
+	enterExpr_comparison(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#expr_comparison.
+	exitExpr_comparison(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#expr_bitwise.
+	enterExpr_bitwise(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#expr_bitwise.
+	exitExpr_bitwise(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#expr_addition.
+	enterExpr_addition(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#expr_addition.
+	exitExpr_addition(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#expr_multiplication.
+	enterExpr_multiplication(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#expr_multiplication.
+	exitExpr_multiplication(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#expr_string.
+	enterExpr_string(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#expr_string.
+	exitExpr_string(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#expr_collate.
+	enterExpr_collate(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#expr_collate.
+	exitExpr_collate(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#expr_unary.
+	enterExpr_unary(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#expr_unary.
+	exitExpr_unary(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#expr_base.
+	enterExpr_base(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#expr_base.
+	exitExpr_base(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#raise_function.
+	enterRaise_function(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#raise_function.
+	exitRaise_function(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#literal_value.
+	enterLiteral_value(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#literal_value.
+	exitLiteral_value(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#percentile_clause.
+	enterPercentile_clause(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#percentile_clause.
+	exitPercentile_clause(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#value_row.
+	enterValue_row(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#value_row.
+	exitValue_row(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#values_clause.
+	enterValues_clause(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#values_clause.
+	exitValues_clause(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#insert_stmt.
+	enterInsert_stmt(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#insert_stmt.
+	exitInsert_stmt(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#returning_clause.
+	enterReturning_clause(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#returning_clause.
+	exitReturning_clause(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#upsert_clause.
+	enterUpsert_clause(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#upsert_clause.
+	exitUpsert_clause(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#pragma_stmt.
+	enterPragma_stmt(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#pragma_stmt.
+	exitPragma_stmt(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#pragma_value.
+	enterPragma_value(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#pragma_value.
+	exitPragma_value(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#reindex_stmt.
+	enterReindex_stmt(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#reindex_stmt.
+	exitReindex_stmt(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#select_stmt.
+	enterSelect_stmt(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#select_stmt.
+	exitSelect_stmt(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#join_clause.
+	enterJoin_clause(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#join_clause.
+	exitJoin_clause(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#select_core.
+	enterSelect_core(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#select_core.
+	exitSelect_core(ctx) {
 	}
 
 
@@ -563,12 +545,12 @@ export default class SQLiteParserListener extends antlr4.tree.ParseTreeListener 
 	}
 
 
-	// Enter a parse tree produced by SQLiteParser#join_clause.
-	enterJoin_clause(ctx) {
+	// Enter a parse tree produced by SQLiteParser#result_column.
+	enterResult_column(ctx) {
 	}
 
-	// Exit a parse tree produced by SQLiteParser#join_clause.
-	exitJoin_clause(ctx) {
+	// Exit a parse tree produced by SQLiteParser#result_column.
+	exitResult_column(ctx) {
 	}
 
 
@@ -590,15 +572,6 @@ export default class SQLiteParserListener extends antlr4.tree.ParseTreeListener 
 	}
 
 
-	// Enter a parse tree produced by SQLiteParser#select_core.
-	enterSelect_core(ctx) {
-	}
-
-	// Exit a parse tree produced by SQLiteParser#select_core.
-	exitSelect_core(ctx) {
-	}
-
-
 	// Enter a parse tree produced by SQLiteParser#compound_operator.
 	enterCompound_operator(ctx) {
 	}
@@ -608,39 +581,147 @@ export default class SQLiteParserListener extends antlr4.tree.ParseTreeListener 
 	}
 
 
-	// Enter a parse tree produced by SQLiteParser#cte_table_name.
-	enterCte_table_name(ctx) {
+	// Enter a parse tree produced by SQLiteParser#update_stmt.
+	enterUpdate_stmt(ctx) {
 	}
 
-	// Exit a parse tree produced by SQLiteParser#cte_table_name.
-	exitCte_table_name(ctx) {
-	}
-
-
-	// Enter a parse tree produced by SQLiteParser#signed_number.
-	enterSigned_number(ctx) {
-	}
-
-	// Exit a parse tree produced by SQLiteParser#signed_number.
-	exitSigned_number(ctx) {
+	// Exit a parse tree produced by SQLiteParser#update_stmt.
+	exitUpdate_stmt(ctx) {
 	}
 
 
-	// Enter a parse tree produced by SQLiteParser#literal_value.
-	enterLiteral_value(ctx) {
+	// Enter a parse tree produced by SQLiteParser#column_name_list.
+	enterColumn_name_list(ctx) {
 	}
 
-	// Exit a parse tree produced by SQLiteParser#literal_value.
-	exitLiteral_value(ctx) {
+	// Exit a parse tree produced by SQLiteParser#column_name_list.
+	exitColumn_name_list(ctx) {
 	}
 
 
-	// Enter a parse tree produced by SQLiteParser#unary_operator.
-	enterUnary_operator(ctx) {
+	// Enter a parse tree produced by SQLiteParser#qualified_table_name.
+	enterQualified_table_name(ctx) {
 	}
 
-	// Exit a parse tree produced by SQLiteParser#unary_operator.
-	exitUnary_operator(ctx) {
+	// Exit a parse tree produced by SQLiteParser#qualified_table_name.
+	exitQualified_table_name(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#vacuum_stmt.
+	enterVacuum_stmt(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#vacuum_stmt.
+	exitVacuum_stmt(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#filter_clause.
+	enterFilter_clause(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#filter_clause.
+	exitFilter_clause(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#window_defn.
+	enterWindow_defn(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#window_defn.
+	exitWindow_defn(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#over_clause.
+	enterOver_clause(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#over_clause.
+	exitOver_clause(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#frame_spec.
+	enterFrame_spec(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#frame_spec.
+	exitFrame_spec(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#frame_clause.
+	enterFrame_clause(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#frame_clause.
+	exitFrame_clause(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#order_clause.
+	enterOrder_clause(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#order_clause.
+	exitOrder_clause(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#limit_clause.
+	enterLimit_clause(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#limit_clause.
+	exitLimit_clause(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#ordering_term.
+	enterOrdering_term(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#ordering_term.
+	exitOrdering_term(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#asc_desc.
+	enterAsc_desc(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#asc_desc.
+	exitAsc_desc(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#frame_left.
+	enterFrame_left(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#frame_left.
+	exitFrame_left(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#frame_right.
+	enterFrame_right(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#frame_right.
+	exitFrame_right(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#frame_single.
+	enterFrame_single(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#frame_single.
+	exitFrame_single(ctx) {
 	}
 
 
@@ -653,6 +734,15 @@ export default class SQLiteParserListener extends antlr4.tree.ParseTreeListener 
 	}
 
 
+	// Enter a parse tree produced by SQLiteParser#filename.
+	enterFilename(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#filename.
+	exitFilename(ctx) {
+	}
+
+
 	// Enter a parse tree produced by SQLiteParser#module_argument.
 	enterModule_argument(ctx) {
 	}
@@ -662,21 +752,48 @@ export default class SQLiteParserListener extends antlr4.tree.ParseTreeListener 
 	}
 
 
-	// Enter a parse tree produced by SQLiteParser#column_alias.
-	enterColumn_alias(ctx) {
+	// Enter a parse tree produced by SQLiteParser#module_argument_outer.
+	enterModule_argument_outer(ctx) {
 	}
 
-	// Exit a parse tree produced by SQLiteParser#column_alias.
-	exitColumn_alias(ctx) {
+	// Exit a parse tree produced by SQLiteParser#module_argument_outer.
+	exitModule_argument_outer(ctx) {
 	}
 
 
-	// Enter a parse tree produced by SQLiteParser#keyword.
-	enterKeyword(ctx) {
+	// Enter a parse tree produced by SQLiteParser#module_argument_inner.
+	enterModule_argument_inner(ctx) {
 	}
 
-	// Exit a parse tree produced by SQLiteParser#keyword.
-	exitKeyword(ctx) {
+	// Exit a parse tree produced by SQLiteParser#module_argument_inner.
+	exitModule_argument_inner(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#fallback_excluding_conflicts.
+	enterFallback_excluding_conflicts(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#fallback_excluding_conflicts.
+	exitFallback_excluding_conflicts(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#join_keyword.
+	enterJoin_keyword(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#join_keyword.
+	exitJoin_keyword(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#fallback.
+	enterFallback(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#fallback.
+	exitFallback(ctx) {
 	}
 
 
@@ -698,12 +815,12 @@ export default class SQLiteParserListener extends antlr4.tree.ParseTreeListener 
 	}
 
 
-	// Enter a parse tree produced by SQLiteParser#database_name.
-	enterDatabase_name(ctx) {
+	// Enter a parse tree produced by SQLiteParser#schema_name.
+	enterSchema_name(ctx) {
 	}
 
-	// Exit a parse tree produced by SQLiteParser#database_name.
-	exitDatabase_name(ctx) {
+	// Exit a parse tree produced by SQLiteParser#schema_name.
+	exitSchema_name(ctx) {
 	}
 
 
@@ -725,21 +842,30 @@ export default class SQLiteParserListener extends antlr4.tree.ParseTreeListener 
 	}
 
 
-	// Enter a parse tree produced by SQLiteParser#new_table_name.
-	enterNew_table_name(ctx) {
-	}
-
-	// Exit a parse tree produced by SQLiteParser#new_table_name.
-	exitNew_table_name(ctx) {
-	}
-
-
 	// Enter a parse tree produced by SQLiteParser#column_name.
 	enterColumn_name(ctx) {
 	}
 
 	// Exit a parse tree produced by SQLiteParser#column_name.
 	exitColumn_name(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#column_name_excluding_string.
+	enterColumn_name_excluding_string(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#column_name_excluding_string.
+	exitColumn_name_excluding_string(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#column_alias.
+	enterColumn_alias(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#column_alias.
+	exitColumn_alias(ctx) {
 	}
 
 
@@ -824,12 +950,75 @@ export default class SQLiteParserListener extends antlr4.tree.ParseTreeListener 
 	}
 
 
-	// Enter a parse tree produced by SQLiteParser#transaction_name.
-	enterTransaction_name(ctx) {
+	// Enter a parse tree produced by SQLiteParser#table_alias_excluding_joins.
+	enterTable_alias_excluding_joins(ctx) {
 	}
 
-	// Exit a parse tree produced by SQLiteParser#transaction_name.
-	exitTransaction_name(ctx) {
+	// Exit a parse tree produced by SQLiteParser#table_alias_excluding_joins.
+	exitTable_alias_excluding_joins(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#window_name.
+	enterWindow_name(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#window_name.
+	exitWindow_name(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#alias.
+	enterAlias(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#alias.
+	exitAlias(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#base_window_name.
+	enterBase_window_name(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#base_window_name.
+	exitBase_window_name(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#table_function_name.
+	enterTable_function_name(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#table_function_name.
+	exitTable_function_name(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#any_name_excluding_raise.
+	enterAny_name_excluding_raise(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#any_name_excluding_raise.
+	exitAny_name_excluding_raise(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#any_name_excluding_joins.
+	enterAny_name_excluding_joins(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#any_name_excluding_joins.
+	exitAny_name_excluding_joins(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#any_name_excluding_string.
+	enterAny_name_excluding_string(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#any_name_excluding_string.
+	exitAny_name_excluding_string(ctx) {
 	}
 
 

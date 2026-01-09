@@ -14,7 +14,7 @@ export class CustomListener extends SQLiteParserListener {
             columns: [],
 	        values: [],
             table: [],
-            conditions: [],
+            conditions: null,
 	        between: null,
 	        range: null,
             groupby: null,
@@ -169,12 +169,84 @@ export class CustomListener extends SQLiteParserListener {
    
 	// Enter a parse tree produced by SQLiteParser#delete_stmt.
 	enterDelete_stmt(ctx) {
+	  
+		this.sqlStruct = this.buildSqlStruct('delete');	
+
+		ctx.children.forEach(children => {
+
+			switch(children.constructor.name) {
+
+				case 'Qualified_table_nameContext':
+					this.sqlStruct.table = children.getText();
+					break;
+
+				case 'ExprContext':
+					this.sqlStruct.conditions = children.getText();
+					break;
+
+				default:
+					break;
+
+			}
+
+		})
+
+    //console.log(this.sqlStruct)
+
 	}
    
 	// Exit a parse tree produced by SQLiteParser#delete_stmt.
 	exitDelete_stmt(ctx) {
+
+		if(this.sqlStruct && this.sqlStruct.command === 'delete') {
+
+			const table = this.sqlStruct.table;
+			let conditions = this.sqlStruct.conditions;
+      
+			let splitedConditions = conditions.split('&');
+			splitedConditions = this.enterExpr_formatExpr(splitedConditions, table);
+			
+			conditions = splitedConditions.toString().replaceAll(',', ' && ');
+
+			this.result.push(`deleteFrom('${table}', where('${conditions}'))`);
+			this.sqlStruct = null;
+
+		}
+
 	}
    
+
+	enterExpr_formatExpr(conditions, table) {
+
+		const formatedConditions = []
+
+		conditions.forEach(condition => {
+
+			condition = this.enterExpr_formatExprWithTable(condition, table);
+
+			if(condition.search('>=') != -1) {
+				formatedConditions.push(condition.replace('>=', ' >= '));
+			} else if(condition.search('<=') != -1) {
+				formatedConditions.push(condition.replace('<=', ' <= '));
+			} else if(condition.search('!=') != -1) {
+				formatedConditions.push(condition.replace('!=', ' != '));      
+			} else if(condition.search('=') != -1) {
+				formatedConditions.push(condition.replace('=', ' === ' ));
+			}
+
+		});
+
+		return formatedConditions;
+
+	}
+
+
+	enterExpr_formatExprWithTable(condition, table) {
+
+		return `${table}.${condition}`;
+
+	}
+
    
 	// Enter a parse tree produced by SQLiteParser#delete_stmt_limited.
 	enterDelete_stmt_limited(ctx) {
@@ -354,6 +426,46 @@ export class CustomListener extends SQLiteParserListener {
    
 	// Enter a parse tree produced by SQLiteParser#update_stmt.
 	enterUpdate_stmt(ctx) {
+
+		this.sqlStruct = this.buildSqlStruct('update');
+		let nextValueIsACondition = false;
+
+		ctx.children.forEach(children => {
+
+			//console.log(children.constructor.name + " " + children.getText());
+
+			switch(children.constructor.name) {
+
+				case 'Qualified_table_nameContext':
+					this.sqlStruct.table = children.getText();
+					break;
+
+				case 'Column_nameContext':
+					this.sqlStruct.columns.push(children.getText());
+					break;
+
+				case 'Fe':
+					if(children.getText() === 'where') {
+						nextValueIsACondition = true;
+					}
+					break;
+
+				case 'ExprContext':
+				
+					if(nextValueIsACondition) {
+						this.sqlStruct.conditions.push(children.getText());
+					} else {
+						this.sqlStruct.values.push(children.getText());
+					}
+
+					break;
+
+			}
+
+		})
+
+		console.log(this.sqlStruct);
+
 	}
    
 	// Exit a parse tree produced by SQLiteParser#update_stmt.

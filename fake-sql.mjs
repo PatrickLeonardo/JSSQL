@@ -1,17 +1,6 @@
 const dbs = { MARVEL: {}, DC: {} };
 var defaultDatabase = null;
 
-export const use = (database) => {
-    
-    if(dbs[database]) {
-        defaultDatabase = dbs[database];
-        return console.table([{DEFAULT_DATABASE: database}]);
-    }
-
-    throw new Error('Database not exists...');
-
-}
-
 export const create = (structure, name, ...columns) => {
 
     switch(structure) {
@@ -25,6 +14,17 @@ export const create = (structure, name, ...columns) => {
             break
         
     }
+
+}
+
+export const use = (database) => {
+    
+    if(dbs[database]) {
+        defaultDatabase = dbs[database];
+        return console.table([{DEFAULT_DATABASE: database}]);
+    }
+
+    throw new Error('Database not exists...');
 
 }
 
@@ -46,9 +46,11 @@ export const select = (columns, table, conditions = null) => {
     if(columns === '*') {
 
         columns = table.columns.toString();
-        columns = columns.replaceAll(',', ', ');
         
     }
+
+    columns = columns.replaceAll(', ', ',');
+    
 
     const result = [];
     
@@ -63,7 +65,8 @@ export const select = (columns, table, conditions = null) => {
             
             if(eval(conditions)) {
                 
-                columns.split(', ').forEach(column => { 
+                
+                columns.split(',').forEach(column => { 
                     temp[column] = relationalTable[column];
                 })
                 
@@ -71,7 +74,7 @@ export const select = (columns, table, conditions = null) => {
             
         } else {
 
-            columns.split(', ').forEach(column => {
+            columns.split(',').forEach(column => {
                 temp[column] = relationalTable[column];
             })
 

@@ -1,4 +1,4 @@
-// Generated from SQLiteParser.g4 by ANTLR 4.13.2
+// Generated from ./SQLiteParser.g4 by ANTLR 4.13.2
 // jshint ignore: start
 import antlr4 from 'antlr4';
 
@@ -128,6 +128,24 @@ export default class SQLiteParserListener extends antlr4.tree.ParseTreeListener 
 
 	// Exit a parse tree produced by SQLiteParser#create_table_stmt.
 	exitCreate_table_stmt(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#database_name.
+	enterDatabase_name(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#database_name.
+	exitDatabase_name(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#create_database_stmt.
+	enterCreate_database_stmt(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#create_database_stmt.
+	exitCreate_database_stmt(ctx) {
 	}
 
 
@@ -587,6 +605,15 @@ export default class SQLiteParserListener extends antlr4.tree.ParseTreeListener 
 
 	// Exit a parse tree produced by SQLiteParser#update_stmt.
 	exitUpdate_stmt(ctx) {
+	}
+
+
+	// Enter a parse tree produced by SQLiteParser#use_stmt.
+	enterUse_stmt(ctx) {
+	}
+
+	// Exit a parse tree produced by SQLiteParser#use_stmt.
+	exitUse_stmt(ctx) {
 	}
 
 

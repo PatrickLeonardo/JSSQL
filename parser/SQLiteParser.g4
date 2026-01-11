@@ -50,6 +50,7 @@ sql_stmt
         | attach_stmt
         | begin_stmt
         | commit_stmt
+        | create_database_stmt
         | create_index_stmt
         | create_table_stmt
         | create_trigger_stmt
@@ -65,6 +66,7 @@ sql_stmt
         | rollback_stmt
         | savepoint_stmt
         | select_stmt
+        | use_stmt
         | update_stmt
         | vacuum_stmt
     )
@@ -125,6 +127,14 @@ create_table_stmt
         OPEN_PAR column_def (COMMA column_def)*? (COMMA table_constraint)* CLOSE_PAR table_options?
         | AS_ select_stmt
     )
+;
+
+database_name
+    : any_name
+;
+
+create_database_stmt
+    : CREATE_ (TEMP_ | TEMPORARY_)? DATABASE_ (IF_ NOT_ EXISTS_)? (schema_name DOT)? database_name
 ;
 
 table_options
@@ -489,6 +499,10 @@ update_stmt
     ) ASSIGN expr (COMMA (column_name | column_name_list) ASSIGN expr)* (
         FROM_ join_clause
     )? (WHERE_ expr)? returning_clause? order_clause? limit_clause?
+;
+
+use_stmt
+    : USE_ (IF_ EXISTS_)? database_name
 ;
 
 column_name_list

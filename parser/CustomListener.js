@@ -14,6 +14,7 @@ export class CustomListener extends SQLiteParserListener {
             columns: [],
 	        values: [],
             table: [],
+            database: null,
             conditions: null,
 	        between: null,
 	        range: null,
@@ -133,11 +134,44 @@ export class CustomListener extends SQLiteParserListener {
    
 	// Enter a parse tree produced by SQLiteParser#create_table_stmt.
 	enterCreate_table_stmt(ctx) {
-	}
+
+    this.sqlStruct = this.buildSqlStruct('create_table');
+
+    ctx.children.forEach(child => {
+       
+      switch(child.constructor.name) {
+        
+        case 'Table_nameContext':
+          this.sqlStruct.table = child.getText();
+          break;
+        
+        case 'Column_defContext':
+          this.sqlStruct.columns.push("'" + child.getText() + "'");
+          break;
+        
+        default:
+          break
+        
+      }
+
+    })
+
+  }
    
 	// Exit a parse tree produced by SQLiteParser#create_table_stmt.
 	exitCreate_table_stmt(ctx) {
-	}
+    
+    if(this.sqlStruct && this.sqlStruct.command === 'create_table') {
+
+      const table = this.sqlStruct.table;
+      const columns = this.sqlStruct.columns;
+
+      this.result.push(`create('table', '${table}', [${columns}])`)
+      this.sqlStruct = null;
+
+    }
+
+  }
    
    
 	// Enter a parse tree produced by SQLiteParser#create_trigger_stmt.
@@ -181,7 +215,8 @@ export class CustomListener extends SQLiteParserListener {
 					break;
 
 				case 'ExprContext':
-					this.sqlStruct.conditions = children.getText();
+          this.sqlStruct.conditions = [];
+					this.sqlStruct.conditions.push(children.getText());
 					break;
 
 				default:
@@ -191,8 +226,6 @@ export class CustomListener extends SQLiteParserListener {
 
 		})
 
-    //console.log(this.sqlStruct)
-
 	}
    
 	// Exit a parse tree produced by SQLiteParser#delete_stmt.
@@ -201,14 +234,14 @@ export class CustomListener extends SQLiteParserListener {
 		if(this.sqlStruct && this.sqlStruct.command === 'delete') {
 
 			const table = this.sqlStruct.table;
-			let conditions = this.sqlStruct.conditions;
+			let conditions = this.sqlStruct.conditions[0];
       
 			let splitedConditions = conditions.split('&');
 			splitedConditions = this.enterExpr_formatExpr(splitedConditions, table);
 			
 			conditions = splitedConditions.toString().replaceAll(',', ' && ');
 
-			this.result.push(`deleteFrom('${table}', where('${conditions}'))`);
+			this.result.push(`deleteFrom("${table}", where("${conditions}"))`);
 			this.sqlStruct = null;
 
 		}
@@ -304,12 +337,13 @@ export class CustomListener extends SQLiteParserListener {
 
 	// Enter a parse tree produced by SQLiteParser#insert_stmt.
 	enterInsert_stmt(ctx) {
-			
+		
 		this.sqlStruct = this.buildSqlStruct('insert');
 
 		if(ctx.children) {
-			ctx.children.forEach(child => {
 
+			ctx.children.forEach(child => {
+        
 				switch(child.constructor.name) {
 
 					case 'Table_nameContext':
@@ -323,10 +357,17 @@ export class CustomListener extends SQLiteParserListener {
 						this.sqlStruct.columns.push(child.getText())
 						break;
 
-					case 'ExprContext': 
-						this.sqlStruct.values.push(child.getText())
-						break;
-						
+					case 'Select_stmtContext': 
+
+            child.getText()
+              .substring(7, child.getText().length - 1).toString()
+              .split(',')
+              .forEach(value => {
+                this.sqlStruct.values.push(value);
+              })
+            
+            break;
+					
 					default:
 						break;
 
@@ -334,18 +375,19 @@ export class CustomListener extends SQLiteParserListener {
 				
 			})
 		}
+    
 	}
 
 	// Exit a parse tree produced by SQLiteParser#insert_stmt.
 	exitInsert_stmt(ctx) {
-
+    
 		if(this.sqlStruct && this.sqlStruct.command === 'insert') {
-
+      
 			const table = this.sqlStruct.table;
 			const values = this.sqlStruct.values.toString();
-
-			this.result.push(`insert(into('${table}'), values(${values}))`);
-			this.sqlStruct = null;
+			
+      this.result.push(`insert(into('${table}'), values(${values}))`);	
+      this.sqlStruct = null;
 
 		}        
 
@@ -408,7 +450,7 @@ export class CustomListener extends SQLiteParserListener {
    
 	// Enter a parse tree produced by SQLiteParser#select_stmt.
 	enterSelect_stmt(ctx) {
-	}
+  }
    
 	// Exit a parse tree produced by SQLiteParser#select_stmt.
 	exitSelect_stmt(ctx) {
@@ -430,32 +472,31 @@ export class CustomListener extends SQLiteParserListener {
 		this.sqlStruct = this.buildSqlStruct('update');
 		let nextValueIsACondition = false;
 
-		ctx.children.forEach(children => {
+		ctx.children.forEach(child => {
 
-			//console.log(children.constructor.name + " " + children.getText());
-
-			switch(children.constructor.name) {
+			switch(child.constructor.name) {
 
 				case 'Qualified_table_nameContext':
-					this.sqlStruct.table = children.getText();
+					this.sqlStruct.table = child.getText();
 					break;
 
 				case 'Column_nameContext':
-					this.sqlStruct.columns.push(children.getText());
+					this.sqlStruct.columns.push(child.getText());
 					break;
 
 				case 'Fe':
-					if(children.getText() === 'where') {
+					if(child.getText() === 'where') {
 						nextValueIsACondition = true;
 					}
 					break;
 
 				case 'ExprContext':
-				
+			  	
 					if(nextValueIsACondition) {
-						this.sqlStruct.conditions.push(children.getText());
+            this.sqlStruct.conditions = [];
+						this.sqlStruct.conditions.push(child.getText());
 					} else {
-						this.sqlStruct.values.push(children.getText());
+						this.sqlStruct.values.push(child.getText());
 					}
 
 					break;
@@ -464,13 +505,37 @@ export class CustomListener extends SQLiteParserListener {
 
 		})
 
-		console.log(this.sqlStruct);
-
 	}
    
 	// Exit a parse tree produced by SQLiteParser#update_stmt.
 	exitUpdate_stmt(ctx) {
-	}
+	  
+    if(this.sqlStruct && this.sqlStruct.command === 'update') {
+
+      const table = this.sqlStruct.table;
+      const column = this.sqlStruct.columns[0];
+      const value = this.sqlStruct.values[0];
+      
+      let query = `update('${table}', set("${table}.${column} = ${value}")`;
+
+      if(this.sqlStruct.conditions) {
+        
+        var conditions = this.sqlStruct.conditions[0];
+        let splitedConditions = conditions.split('&');
+			  
+        splitedConditions = this.enterExpr_formatExpr(splitedConditions, table);
+        
+			  conditions = splitedConditions.toString().replaceAll(',', ' && ');
+        
+        query = query.concat(`, where("${conditions}")`);
+      }
+
+      this.result.push(query.concat(')'));
+      this.sqlStruct = null;
+
+    }
+
+  }
    
    
 	// Enter a parse tree produced by SQLiteParser#update_stmt_limited.
@@ -763,10 +828,66 @@ export class CustomListener extends SQLiteParserListener {
    
 	// Enter a parse tree produced by SQLiteParser#select_core.
 	enterSelect_core(ctx) {
+    
+    if(!this.sqlStruct) {
+      this.sqlStruct = this.buildSqlStruct('select');
+    }
+
+    ctx.children.forEach(child => {
+       
+      switch(child.constructor.name) {
+        
+        case 'Join_clauseContext':
+          this.sqlStruct.table = child.getText();
+          break;
+        
+        case 'Result_columnContext':
+          this.sqlStruct.columns.push(child.getText());
+          break;
+
+        case 'ExprContext':
+          this.sqlStruct.conditions = [];
+          this.sqlStruct.conditions.push(child.getText());
+          break;
+
+        default:
+          break;
+        
+      }
+
+    })
+
 	}
    
 	// Exit a parse tree produced by SQLiteParser#select_core.
 	exitSelect_core(ctx) {
+
+    if(this.sqlStruct && this.sqlStruct.command === 'select') {
+
+      const table = this.sqlStruct.table;
+      const columns = this.sqlStruct.columns;
+
+      let query = `select('${columns}', from('${table}')`; 
+
+      if(this.sqlStruct.conditions) {
+        
+        var conditions = this.sqlStruct.conditions[0];
+        let splitedConditions = conditions.split('&');
+			  
+        splitedConditions = this.enterExpr_formatExpr(splitedConditions, table);
+        
+			  conditions = splitedConditions.toString().replaceAll(',', ' && ');
+        
+        query = query.concat(`, where("${conditions}")`);
+        
+      }
+
+
+      this.result.push(query.concat(')'));
+      this.sqlStruct = null;
+
+    }
+
 	}
    
    
@@ -868,8 +989,41 @@ export class CustomListener extends SQLiteParserListener {
 	exitFunction_name(ctx) {
 	}
    
-   
-	// Enter a parse tree produced by SQLiteParser#database_name.
+  enterCreate_database_stmt(ctx) {
+    
+    this.sqlStruct = this.buildSqlStruct('create_database');
+
+    ctx.children.forEach(child => {
+
+      switch(child.constructor.name) {
+
+        case 'Database_nameContext':
+          this.sqlStruct.database = child.getText();
+          break;
+        
+        default:
+          break
+        
+      }
+
+    })
+
+  }
+
+  exitCreate_database_stmt(ctx) {
+
+    if(this.sqlStruct && this.sqlStruct.command === 'create_database') {
+
+      const database_name = this.sqlStruct.database;
+
+      this.result.push(`create('database', '${database_name}')`)
+      this.sqlStruct = null;
+
+    }
+
+  }
+	
+  // Enter a parse tree produced by SQLiteParser#database_name.
 	enterDatabase_name(ctx) {
 	}
    
@@ -1002,8 +1156,41 @@ export class CustomListener extends SQLiteParserListener {
 	// Exit a parse tree produced by SQLiteParser#transaction_name.
 	exitTransaction_name(ctx) {
 	}
-   
-   
+  
+  enterUse_stmt(ctx) {
+
+    this.sqlStruct = this.buildSqlStruct('use');
+
+    ctx.children.forEach(child => {
+
+      switch(child.constructor.name) {
+
+        case 'Database_nameContext':
+          this.sqlStruct.database = child.getText();
+          break;
+        
+        default:
+          break;
+        
+      }
+
+    })
+
+  } 
+
+  exitUse_stmt(ctx) {
+    
+    if(this.sqlStruct && this.sqlStruct.command === 'use') {
+
+      const database_name = this.sqlStruct.database;
+
+      this.result.push(`use('${database_name}')`)
+      this.sqlStruct = null;
+
+    }
+
+  }
+
 	// Enter a parse tree produced by SQLiteParser#any_name.
 	enterAny_name(ctx) {
 	}

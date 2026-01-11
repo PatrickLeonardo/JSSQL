@@ -201,6 +201,7 @@ UNBOUNDED_         : 'UNBOUNDED';
 UNION_             : 'UNION';
 UNIQUE_            : 'UNIQUE';
 UPDATE_            : 'UPDATE';
+USE_               : 'USE';
 USING_             : 'USING';
 VACUUM_            : 'VACUUM';
 VALUES_            : 'VALUES';

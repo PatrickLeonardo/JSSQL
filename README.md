@@ -35,7 +35,8 @@ antlr4.tree.ParseTreeWalker.DEFAULT.walk(listener, tree);
 ### Alterações feitas no Lexer G4
 
 ```g4
-USE_ : 'USE';
+DESCRIBE_   : 'DESCRIBE';
+USE_        : 'USE';
 ```
 
 ### Alterações feitas no Parser G4
@@ -45,19 +46,22 @@ sql_stmt
     : (EXPLAIN_ (QUERY_ PLAN_)?)? (
         ...
         | create_database_stmt
+        ...
+        | describe_stmt
+        ...
         | use_stmt
         ...
 ;
 
-database_name
-    : any_name
+create_database_stmt
+    : CREATE_ DATABASE_ (IF_ NOT_ EXISTS_)? schema_name
 ;
 
-create_database_stmt
-    : CREATE_ (TEMP_ | TEMPORARY_)? DATABASE_ (IF_ NOT_ EXISTS_)? (schema_name DOT)? database_name
+describe_stmt
+    : DESCRIBE_ (schema_name DOT)? table_name
 ;
 
 use_stmt
-    : USE_ (IF_ EXISTS_)? database_name
+    : USE_ (IF_ EXISTS_)? schema_name
 ;
 ```

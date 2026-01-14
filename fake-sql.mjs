@@ -1,4 +1,4 @@
-const dbs = { MARVEL: {}, DC: {} };
+const dbs = {};
 var defaultDatabase = null;
 
 export const create = (structure, name, ...columns) => {
@@ -6,6 +6,7 @@ export const create = (structure, name, ...columns) => {
     switch(structure) {
 
         case 'database':
+        case 'schema':
             dbs[name] = {};
             break;
         
@@ -13,7 +14,12 @@ export const create = (structure, name, ...columns) => {
             defaultDatabase[name] = {"name": name, "columns": columns[0], "values": []};
             break
         
+        default:
+            throw new RangeError('Structure invalid');
+        
     }
+
+    return `${structure} created`;
 
 }
 
@@ -21,7 +27,7 @@ export const use = (database) => {
     
     if(dbs[database]) {
         defaultDatabase = dbs[database];
-        return console.table([{DEFAULT_DATABASE: database}]);
+        return [{DEFAULT_DATABASE: database}];
     }
 
     throw new Error('Database not exists...');
@@ -30,8 +36,16 @@ export const use = (database) => {
 
 export const desc = (table) => {
     
-    return console.table(defaultDatabase[table].columns);
+    const columns = [];
 
+    defaultDatabase[table].columns.forEach(column => {
+        
+        columns.push({columns: column})
+
+    })
+
+    return columns;
+    
 }
 
 export const insert = (table, values) => {
@@ -39,6 +53,7 @@ export const insert = (table, values) => {
     const id = table.length + 1;
     table.push([...values, id])
 
+    return true;
 }
 
 export const select = (columns, table, conditions = null) => {

@@ -1,26 +1,78 @@
-import { create, use, desc, insert, select, from, into, values, where, update, set, deleteFrom } from './fake-sql.mjs'
+import { create, desc, insert, into, use, values } from './fake-sql.mjs';
 
-create('database', 'PK');
-use('PK')
+describe('create', () => {
 
-create('table', 'characters', ['name', 'age', 'city', 'id']);
-//desc('characters');
+    it('should create a database/schema', () => {
 
-insert(into('characters'), values('peter', 25, 'new york'));
-insert(into('characters'), values('odin', 5000, 'asgard'));
-insert(into('characters'), values('thor', 3000, 'asgard'));
+        const schemaDefinition = create('schema', 'MARVEL');
+        const databaseDefinition = create('database', 'DC');
+        
+        expect(schemaDefinition).toBe('schema created');
+        expect(databaseDefinition).toBe('database created');
 
-//select('name, age', from('characters'), where(`characters.age == 3000 || characters.age == 5000`));
-//select('name, age', from('characters'));
+    });
 
-//select('id', from('characters'), where('characters.age >= 3000'))
+    it('should create a table', () => {
 
-//select('*', from('characters'), where('characters.age >= 0'));
+        create('schema', 'test');
+        use('test');
 
-//set('contact name = "Patrick", City = "SP"');
+        const tableDefinition = create('table', 'heroes', ['name', 'age', 'city', 'id']);
 
-//update('characters', set(`characters.age = 3000`), where(`characters.name == 'thor'`));
+        expect(tableDefinition).toBe('table created');
 
-deleteFrom('characters', where(`characters.age == 5000`));
+    });
 
-select('*', from('characters'));
+});
+
+describe('use', () => {
+
+    it('should use a database/schema', () => {
+
+        const activeSchema = use('MARVEL');
+        const activeDatabase = use('DC');
+
+        expect(activeSchema).toEqual([{DEFAULT_DATABASE: 'MARVEL'}]);
+        expect(activeDatabase).toEqual([{DEFAULT_DATABASE: 'DC'}]);
+
+    });
+
+});
+
+describe('desc', () => {
+
+    it('should describe a table', () => {
+        
+        create('schema', 'city');
+        use('city');
+        create('table', 'peoples', ['name', 'age', 'gender']);
+        
+        const tableDescribed = desc('peoples');
+        
+        expect(tableDescribed).toEqual(
+            [
+                { columns: 'name' },
+                { columns: 'age' },
+                { columns: 'gender'} 
+            ]
+        );
+        
+    });
+
+});
+
+describe('insert', () => {
+
+    it('should insert data on table', () => {
+
+        create('schema', 'AVENGERS');
+        use('AVENGERS');
+        create('table', 'heroes', ['name', 'city', 'id']);
+
+        const insertion = insert(into('heroes'), values('Thor', 'asgard'));
+
+        expect(insertion).toBeTruthy();
+
+    });
+
+});

@@ -97,6 +97,7 @@ DEFERRABLE_        : 'DEFERRABLE';
 DEFERRED_          : 'DEFERRED';
 DELETE_            : 'DELETE';
 DESC_              : 'DESC';
+DESCRIBE_          : 'DESCRIBE';
 DETACH_            : 'DETACH';
 DISTINCT_          : 'DISTINCT';
 DO_                : 'DO';

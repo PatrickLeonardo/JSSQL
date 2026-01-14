@@ -11,8 +11,11 @@ const parseScriptWithSplitQueries = (script) => {
 
     const splitedQuerie = SplitQueries(script); 
     console.log(`running: ${splitedQuerie}\n`);
-    eval(splitedQuerie[0]);
-
+    
+    const result = eval(splitedQuerie[0]);
+    console.table(result);
+    console.log();
+    
     const query = prompt('> ');
     parseScriptWithSplitQueries(query);
 

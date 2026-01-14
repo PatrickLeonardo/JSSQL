@@ -57,6 +57,7 @@ sql_stmt
         | create_view_stmt
         | create_virtual_table_stmt
         | delete_stmt
+        | describe_stmt
         | detach_stmt
         | drop_stmt
         | insert_stmt
@@ -129,12 +130,8 @@ create_table_stmt
     )
 ;
 
-database_name
-    : any_name
-;
-
 create_database_stmt
-    : CREATE_ (TEMP_ | TEMPORARY_)? DATABASE_ (IF_ NOT_ EXISTS_)? (schema_name DOT)? database_name
+    : CREATE_ DATABASE_ (IF_ NOT_ EXISTS_)? schema_name
 ;
 
 table_options
@@ -231,6 +228,10 @@ cte_table_name
 // Merged with delete_stmt_limited, which is an optional extension of delete_stmt
 delete_stmt
     : with_clause? DELETE_ FROM_ qualified_table_name (WHERE_ expr)? returning_clause? order_clause? limit_clause?
+;
+
+describe_stmt
+    : DESCRIBE_ (schema_name DOT)? table_name
 ;
 
 detach_stmt
@@ -502,7 +503,7 @@ update_stmt
 ;
 
 use_stmt
-    : USE_ (IF_ EXISTS_)? database_name
+    : USE_ (IF_ EXISTS_)? schema_name
 ;
 
 column_name_list

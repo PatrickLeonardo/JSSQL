@@ -1,18 +1,21 @@
 {
-  "name": "jsql",
+  "name": "JSSQL",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
+  "main": "main.mjs",
   "type": "module",
   "scripts": {
     "dev": "node main.mjs",
-    "test": "node fake-sql.test.mjs"
+    "test": "node --experimental-vm-modules --disable-warning=ExperimentalWarning node_modules/jest/bin/jest.js"
   },
-  "author": "",
+  "author": "PatrickLeonardo",
   "license": "ISC",
   "dependencies": {
     "antlr4": "^4.13.2",
     "fs": "^0.0.1-security",
     "prompt-sync": "^4.2.0"
+  },
+  "devDependencies": {
+    "jest": "^30.2.0"
   }
 }
